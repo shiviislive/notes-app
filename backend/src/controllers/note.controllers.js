@@ -40,10 +40,10 @@ async function updateNote(req, res) {
     if (!note) {
       return res.status(404).json({ message: "Note not found" });
     }
-
-    if (note.user.toString() !== req.user.id) {
-      return res.status(403).json({ message: "Unauthorized" });
-    }
+ 
+    if (note.user.toString() !== req.user.id.toString()) {
+  return res.status(403).json({ message: "Unauthorized" });
+}
 
     note.title = req.body.title || note.title;
     note.content = req.body.content || note.content;
@@ -68,7 +68,7 @@ async function deleteNote(req, res) {
       return res.status(404).json({ message: "Note not found" });
     }
 
-    if (note.user.toString() !== req.user.id) {
+    if (note.user.toString() !== req.user.id.toString()) {
       return res.status(403).json({ message: "Unauthorized" });
     }
 

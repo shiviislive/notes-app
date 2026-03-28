@@ -29,7 +29,7 @@ async function authMiddleware(req, res, next) {
       role: user.role,
       email: user.email
     };
-        return next();
+         next();
     }catch(err){
        return res.status(401).json({
             message: 'Unauthorized, invalid token',
