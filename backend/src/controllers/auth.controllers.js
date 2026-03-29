@@ -77,7 +77,8 @@ async function userLoginController(req, res) {
         user: {
             id : user._id,
             email: user.email,
-            name: user.name
+            name: user.name,
+            role: user.role
         },
         token
     })} catch(err){
