@@ -1,0 +1,250 @@
+{
+  "info": {
+    "_postman_id": "90c7043a-9825-4e06-bce8-d0dc8ecaa1b3",
+    "name": "Notes App API",
+    "description": "A secure RESTful API for managing notes with JWT authentication and role-based access control.  \nBuilt with Node.js, Express, and MongoDB.\n\nBase URL: [http://localhost:3000](http://localhost:3000)  \nAuth: Bearer Token (JWT) — required for all protected routes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48045204",
+    "_collection_link": "https://go.postman.co/collection/48045204-90c7043a-9825-4e06-bce8-d0dc8ecaa1b3?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth Api",
+      "item": [
+        {
+          "name": "register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"sa9598326@gmail.com\",\r\n    \"name\": \"Shivam Agrawal\",\r\n    \"password\": \"sa9598326@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            },
+            "description": "Creates a new user account.\n\nRequired fields: name, email, password  \nDefault role: user\n\nReturns the created user object on success (201).  \nReturns 400 if the email is already registered or fields are missing."
+          },
+          "response": []
+        },
+        {
+          "name": "logout",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/auth/logout",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "auth",
+                "logout"
+              ]
+            },
+            "description": "Logs out the authenticated user by blacklisting their JWT token.\n\nRequires: Authorization → Bearer\n\nOnce logged out, the token is invalid for all future requests.  \nReturns 401 if no token is provided or the token is already blacklisted."
+          },
+          "response": []
+        },
+        {
+          "name": "login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"sa9598326@gmail.com\",\r\n    \"password\": \"sa9598326@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Authenticates a user with email and password.\n\nReturns a signed JWT token valid for 3 days.  \nCopy the token and set it as Bearer Token in the Authorization header for all protected routes.\n\nReturns 401 if credentials are incorrect."
+          },
+          "response": []
+        }
+      ],
+      "description": "Handles user registration, login, and logout.  \nNo authentication required for register and login.  \nLogout requires a valid Bearer token and blacklists it server-side."
+    },
+    {
+      "name": "Notes api",
+      "item": [
+        {
+          "name": "create note",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"what i do today\",\r\n    \"content\": \"i build notes app\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/notes/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "notes",
+                ""
+              ]
+            },
+            "description": "Creates a new note linked to the authenticated user.\n\nRequired fields: title, content  \nThe note is automatically associated with the logged-in user's account.\n\nReturns the created note object (201).  \nReturns 400 if title or content is missing."
+          },
+          "response": []
+        },
+        {
+          "name": "get notes",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/notes/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "notes",
+                ""
+              ]
+            },
+            "description": "Retrieves all notes belonging to the currently authenticated user.\n\nNo request body required.  \nReturns an array of note objects sorted by creation date.  \nReturns an empty array if the user has no notes yet."
+          },
+          "response": []
+        },
+        {
+          "name": "update notes",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"content\": \"today i build notes app and builds rest api\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/notes/69c83b378689b2a8aab92f8a",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "notes",
+                "69c83b378689b2a8aab92f8a"
+              ]
+            },
+            "description": "Updates an existing note by its ID.\n\nURL param: /api/notes/:id → replace :id with the note's MongoDB _id  \nPartial updates supported — send only the fields you want to change (title, content, or both).\n\nReturns 403 if the note belongs to a different user.  \nReturns 404 if the note ID does not exist."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Notes",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/notes/69c83b378689b2a8aab92f8a",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "notes",
+                "69c83b378689b2a8aab92f8a"
+              ]
+            },
+            "description": "Deletes a specific note permanently by its ID.\n\nURL param: /api/notes/:id → replace :id with the note's MongoDB _id  \nRequires: Authorization → Bearer\n\nA user can only delete their own notes.  \nAdmins can delete any note regardless of ownership.\n\nReturns 200 with a success message on deletion.  \nReturns 403 if the note belongs to a different user.  \nReturns 404 if the note ID does not exist."
+          },
+          "response": []
+        }
+      ],
+      "description": "Full CRUD operations for notes.  \nAll routes require a valid JWT token in the Authorization header.  \nUsers can only access and modify their own notes."
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "getallnotes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "description": "Returns all notes from every user in the system.\n\nAdmin access only.  \nEach note includes full owner details (name, email, role) via a populated reference.  \nUseful for monitoring, moderation, or admin dashboards.\n\nReturns 403 if accessed by a non-admin user."
+          },
+          "response": []
+        }
+      ],
+      "description": "Admin-only routes. Accessible exclusively by users with role: admin.  \nRegular users will receive 403 Forbidden.  \nRequires: Authorization → Bearer"
+    }
+  ]
+}

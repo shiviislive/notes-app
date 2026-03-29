@@ -1,6 +1,7 @@
 # 📝 Notes App Backend
  
 A secure and scalable Notes API with authentication, role-based access, and CRUD operations built using Node.js, Express, and MongoDB.
+💡 Built as part of internship assignment showcasing secure backend architecture and real-world API design.
  
 ---
  
@@ -96,6 +97,11 @@ npm run dev
  
 ---
  
+## 📬 API Collection
+
+Download Postman Collection:  
+[notes-api.postman_collection.json](./notes-api.postman_collection.json)
+
 ## 🔐 Authentication & Authorization
  
 - JWT-based authentication
