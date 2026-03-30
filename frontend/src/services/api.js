@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Create axios instance
 const API = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: "https://notes-app-n7p0.onrender.com/",
   withCredentials: true // for cookies (optional)
 });
 

@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const noteRoutes = require('./routes/note.routes');
 
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: "https://notes-app-wheat-eight.vercel.app/",
   credentials: true
 }));
 

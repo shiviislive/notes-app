@@ -92,8 +92,12 @@ npm install
 cd backend && npm run dev
 
 # Terminal 2 — Frontend
-cd frontend && npm start
+cd frontend && npm run dev
 ```
+## 🌐 Live Demo
+
+Frontend: http://localhost:5173  
+Backend: http://localhost:3000
 
 ---
 
@@ -189,6 +193,15 @@ Download Postman Collection:
 - Debugged middleware and async issues
 - Designed RESTful APIs with proper structure
 - Built a full-stack app connecting React with Node.js
+
+---
+
+## ⚡ Scalability Approach
+
+- Modular backend architecture
+- JWT-based stateless authentication
+- Indexed database queries for performance
+- Easily extendable to microservices
 
 ---
 
